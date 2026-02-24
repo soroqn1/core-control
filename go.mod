@@ -3,6 +3,7 @@ module core-control
 go 1.23
 
 require (
+	github.com/shirou/gopsutil v3.21.11+incompatible
 	github.com/shirou/gopsutil/v3 v3.24.5
 	github.com/wailsapp/wails/v2 v2.11.0
 )

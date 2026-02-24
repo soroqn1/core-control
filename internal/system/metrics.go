@@ -1,6 +1,9 @@
 package system
 
 import (
+	"time"
+
+	"github.com/shirou/gopsutil/cpu"
 	"github.com/shirou/gopsutil/v3/mem"
 )
 
@@ -13,12 +16,14 @@ type SystemStats struct {
 
 func GetSystemStats() (*SystemStats, error) {
 	memoryInfo, err := mem.VirtualMemory()
+	CPUUsage, err := cpu.Percent(500*time.Millisecond, false)
 
 	if err != nil {
 		return nil, err
 	}
 	stats := &SystemStats{
 		MemoryUsage: memoryInfo.UsedPercent,
+		CPUUsage:    CPUUsage[0],
 	}
 	return stats, nil
 }
