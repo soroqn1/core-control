@@ -15,8 +15,9 @@ type SystemStats struct {
 }
 
 func GetSystemStats() (*SystemStats, error) {
-	memoryInfo, err := mem.VirtualMemory()
 	CPUUsage, err := cpu.Percent(500*time.Millisecond, false)
+	memoryInfo, err := mem.VirtualMemory()
+	//TODO: Network Usage
 
 	if err != nil {
 		return nil, err
