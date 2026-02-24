@@ -1,0 +1,15 @@
+# build
+build/bin
+
+# frontend
+node_modules
+frontend/dist
+frontend/.angular/
+package.json.md5
+
+# idea
+.idea
+.vscode
+
+# wails
+frontend/wailsjs
