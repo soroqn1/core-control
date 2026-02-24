@@ -1,5 +1,9 @@
 package system
 
+import (
+	"github.com/shirou/gopsutil/v3/mem"
+)
+
 type SystemStats struct {
 	CPUUsage    float64 `json:"cpu_usage"`
 	MemoryUsage float64 `json:"memory_usage"`
@@ -8,5 +12,13 @@ type SystemStats struct {
 }
 
 func GetSystemStats() (*SystemStats, error) {
-	return &SystemStats{}, nil
+	memoryInfo, err := mem.VirtualMemory()
+
+	if err != nil {
+		return nil, err
+	}
+	stats := &SystemStats{
+		MemoryUsage: memoryInfo.UsedPercent,
+	}
+	return stats, nil
 }
